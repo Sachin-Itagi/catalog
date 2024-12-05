@@ -45,3 +45,6 @@ yq eval '(..|select(.kind?=="Pipeline")|select(.metadata.name?=="jib-maven-test-
 
 echo "Patch to Enable Step Actions,Disable Affinity Assistant  on the cluster"
 kubectl patch cm feature-flags -n tekton-pipelines -p '{"data":{"enable-step-actions":"true","disable-affinity-assistant":"true"}}'
+
+echo "Upgrade Jib-Gradle plugin to fix the test"
+sed -i 's/gradle.plugin.com.google.cloud.tools:jib-gradle-plugin/com.google.cloud.tools:jib-gradle-plugin/g' ./task/jib-gradle/*/jib-gradle.yaml

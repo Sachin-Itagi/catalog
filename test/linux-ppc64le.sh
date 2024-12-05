@@ -49,4 +49,5 @@ kubectl patch cm feature-flags -n tekton-pipelines -p '{"data":{"enable-step-act
 echo "Patch to Disable Affinity Assistant (Needed to allow binding of two PVCs for Maven-0-3 test)"
 kubectl patch cm feature-flags -n tekton-pipelines -p '{"data":{"disable-affinity-assistant":"true"}}'
 
-
+echo "Upgrade Jib-Gradle plugin to fix the test"
+sed -i 's/gradle.plugin.com.google.cloud.tools:jib-gradle-plugin/com.google.cloud.tools:jib-gradle-plugin/g' ./task/jib-gradle/*/jib-gradle.yaml
